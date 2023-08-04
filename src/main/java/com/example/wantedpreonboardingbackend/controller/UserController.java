@@ -27,4 +27,18 @@ public class UserController {
     }
 
 
+    @PostMapping("/signin")
+    public ResponseEntity<?> signIn(@Valid @RequestBody UserSignInRequestDto requestDto) {
+        String accessToken = userService.signIn(requestDto);
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorization", "Bearer " + accessToken);
+
+        ResponseMessage<?> responseMessage = ResponseMessage.SuccessResponse("로그인 성공", null).getBody();
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(httpHeaders)
+                .body(responseMessage);
+    }
+
 }
