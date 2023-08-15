@@ -84,7 +84,16 @@ curl -X DELETE "http://3.38.255.120:8080/post/1" \
 * ResponseMessage 클래스를 통해 응답 메시지를 표준화 ( 타입안정성 확보)
 * 단위테스트를 통해 코드 리팩토링 시 빠른 디버깅
 * Docker를 사용한 인프라 설정
-# AWS EC2 로 배포
+* AWS EC2 로 배포
 
 
 ## API 명세(request/response 포함)
+|URL|메소드|request|response|설명|
+|:---:|:---:|:---|:---|:---|
+|회원가입 <br> http://3.38.255.120:8080/signup|POST|  { <br> **"email" : "watednaver.com", <br> "password" : "P@sswordddddddd!"** <br> } | { <br> **"httpStatus": "OK", <br> "message": "회원가입이 성공적으로 완료되었습니다.", <br> "data": null** <br>} | 이메일 : xxxx@xxx.xxx <br> 패스워드 :대문자와 특수문자를 포함한 8자리 이상   |
+|로그인 <br> http://3.38.255.120:8080/signin|POST| { <br> **"email" : "watednaver.com", <br> "password" : "P@sswordddddddd!"** <br> }|{ <br>"httpStatus": "OK", <br>"message": "로그인 성공",<br>"data": null}|응답 헤더 <br> **Authorization** jwt토큰생성 |
+|게시글 작성 <br> http://3.38.255.120:8080/post|POST| { <br> **"title" : "제목", <br> "content" : "내용"** <br> }|{ <br>"httpStatus": "OK",<br>"message": "게시물이 성공적으로 등록되었습니다.",<br>"data": null<br>}| Authorization 헤더에 <br> 토큰 넣어주기|
+|게시글 조회 <br> http://3.38.255.120:8080/post/{id}|GET||{ <br>"httpStatus":"OK",<br>"message":"게시글이 성공적으로 조회되었습니다.",<br>"data": <br>  { <br> "title":"제목",<br> "content":"내용",<br>"writerEmail":"글쓴이 이메일"<br>    }<br>}| |
+|게시글 전체조회 <br> http://3.38.255.120:8080/post/list?page=&size=|GET||{<br>"httpStatus":"OK",<br>"message":"전체 게시글들이 성공적으로 조회되었습니다.",<br>"data":<br>{<br>"content":[{"id":2,"title":"title"}],<br>"pageable":{"sort":{"empty":true,"sorted":false,"unsorted":true},<br>"offset":0,"pageNumber":0,"pageSize":1,"paged":true,"unpaged":false}<br>,"last":false,"totalPages":9,"totalElements":9,"size":1,"number":0,<br>"sort":{"empty":true,"sorted":false,"unsorted":true},<br>"first":true,"numberOfElements":1,"empty":false}}| default size = 20 |
+|게시글 수정 <br> http://3.38.255.120:8080/post/{id} |PUT|  { <br> **"title" : "수정된 제목", <br> "content" : "수정된 내용"** <br> } | { <br> **"httpStatus": "OK", <br> "message": "게시글이 성공적으로 수정되었습니다.", <br> "data": null** <br>} |  Authorization 헤더에 <br> 토큰 넣어주기 |
+|게시글 삭제 <br> http://3.38.255.120:8080/post/{id}|DELETE||{ <br>"httpStatus":"OK",<br>"message":"게시글이 성공적으로 삭제되었습니다.",<br>"data": null <br>}|  Authorization 헤더에 <br> 토큰 넣어주기|
