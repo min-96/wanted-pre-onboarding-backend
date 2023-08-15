@@ -25,7 +25,7 @@ public class PostController {
     private final PostService postService;
 
     @ValidToken
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createPost(@Valid @RequestBody PostCreateRequestDto requestDto) {
         log.info("userId: {}", UserContext.userId.get());
         postService.createPost(UserContext.userId.get(),requestDto);
@@ -45,14 +45,14 @@ public class PostController {
 
 
     @ValidToken
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updatePost(@PathVariable Long id,@RequestBody PostUpdateRequestDto requestDto) {
         postService.updatePost(id, requestDto);
         return ResponseMessage.SuccessResponse("게시글이 성공적으로 수정되었습니다.",null);
     }
 
     @ValidToken
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePost(@PathVariable Long id) {
         postService.deletePost(id);
         return ResponseMessage.SuccessResponse("게시글이 성공적으로 삭제되었습니다.",null);
