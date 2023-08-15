@@ -14,7 +14,11 @@
 ### AWS 어플리케이션 URL 
 **http://3.38.255.120:8080/ (현재 외부 접속 허용가능)**
 
-**어플리케이션 엔드포인트 호출 방법**
+### AWS 구조
+<img width="720" alt="KakaoTalk_Photo_2023-08-16-01-08-09" src="https://github.com/min-96/wanted-pre-onboarding-backend/assets/67457956/3304280b-26db-4ab0-83f9-dcb4ea49da93">
+
+
+### 어플리케이션 엔드포인트 호출 방법
 
 * 회원가입 
 ```
