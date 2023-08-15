@@ -11,7 +11,8 @@
  docker-compose up
 ```
 
-### AWS 어플리케이션 URL - **http://3.38.255.120:8080/** (현재 외부 접속 허용가능)
+### AWS 어플리케이션 URL 
+**http://3.38.255.120:8080/ (현재 외부 접속 허용가능)**
 
 **어플리케이션 엔드포인트 호출 방법**
 
@@ -63,8 +64,12 @@ curl -X DELETE "http://3.38.255.120:8080/post/1" \
 
 
 ## 데이터베이스 테이블 구조
+![image](https://github.com/min-96/wanted-pre-onboarding-backend/assets/67457956/7318bf21-a934-4105-b465-5fc6156652e5)
+
 
 ## 구현한 API의 동작을 촬영한 데모 영상 링크
+
+**https://www.youtube.com/watch?v=pe7dBSmC-aU**
 
 ## 구현 방법 및 이유에 대한 간략한 설명
 * Hibernate Validator을 사용하여 DTO필드에서 이메일과 패스워드 유효성 검증
