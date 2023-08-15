@@ -11,5 +11,7 @@ FROM openjdk:17-jdk
 EXPOSE 8080
 
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/wanted-pre-onboarding-backend.jar
+COPY ./wait-for-it.sh /app/wait-for-it.sh
 
-ENTRYPOINT ["java","-jar","/app/wanted-pre-onboarding-backend.jar"]
+RUN chmod +x /app/wait-for-it.sh
+

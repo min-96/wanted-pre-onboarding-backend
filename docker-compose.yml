@@ -18,6 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: ["/app/wait-for-it.sh", "db:3306", "--", "java", "-jar", "/app/wanted-pre-onboarding-backend.jar"]
     depends_on:
       - db
     ports:
